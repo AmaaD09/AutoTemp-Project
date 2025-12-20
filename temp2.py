@@ -1,29 +1,26 @@
-import sys
 import time
-import Adafruit_DHT
+import board
+import adafruit_dht
 
-# Sensor type: 11 for DHT11, 22 for DHT22/AM2302
-SENSOR_TYPE = 11
-# GPIO Pin number (BCM mode)
-GPIO_PIN = 4
+# Initialize the DHT11 device
+# 'board.D4' corresponds to GPIO Pin 4
+dhtDevice = adafruit_dht.DHT11(board.D4)
 
-print(f"Reading DHT{SENSOR_TYPE} on Pin {GPIO_PIN}...")
+while True:
+    try:
+        # Print the values to the console
+        temperature_c = dhtDevice.temperature
+        humidity = dhtDevice.humidity
+        
+        print(f"Temp: {temperature_c:.1f} C    Humidity: {humidity}%")
 
-try:
-    while True:
-        # read_retry attempts to read up to 15 times (waiting 2s between retries)
-        humidity, temperature = Adafruit_DHT.read_retry(SENSOR_TYPE, GPIO_PIN)
+    except RuntimeError as error:
+        # Errors happen fairly often, DHT's are hard to read, just keep going
+        print(error.args[0])
+        time.sleep(2.0)
+        continue
+    except Exception as error:
+        dhtDevice.exit()
+        raise error
 
-        # Check if reading was successful before printing
-        if humidity is not None and temperature is not None:
-            # Using f-string formatting (Python 3.6+)
-            print(f'Temp: {temperature:0.1f} C  Humidity: {humidity:0.1f} %')
-        else:
-            print('Failed to get reading. Try again!')
-
-        # Wait 2 seconds before the next read to ensure sensor stability
-        time.sleep(2)
-
-except KeyboardInterrupt:
-    print("\nExiting gracefully...")
-    sys.exit(0)
+    time.sleep(2.0)
