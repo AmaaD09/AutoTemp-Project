@@ -1,4 +1,4 @@
-# AutoTemp How-To Guide 🛠️📖
+# AutoTemp How-To Guide 
 
 This guide walks you through hardware connections, software installation, local configuration, testing, and production deployment of the **AutoTemp** climate control system.
 
