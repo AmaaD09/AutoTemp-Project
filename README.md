@@ -1,4 +1,4 @@
-# AutoTemp 🌡️🔌
+# AutoTemp 🌡️
 
 AutoTemp is a lightweight, automated thermostat control system designed to run on low-power devices like the Raspberry Pi. By reading environmental data from dual DHT11 temperature/humidity sensors and averaging the measurements, AutoTemp intelligently switches a smart outlet (specifically a TP-Link Kasa Smart Plug) on or off to regulate climate controls (such as fans, heaters, or AC units) in a room or enclosure.
 
