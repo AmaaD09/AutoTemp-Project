@@ -39,7 +39,7 @@ sudo apt install -y python3-dev python3-pip libgpiod-dev gpiod
 Raspberry Pi OS prevents installing pip packages globally. Set up a dedicated Python virtual environment:
 ```bash
 # Navigate to project directory
-cd "/Users/Genra/Documents/amaad work/AutoTemp-Project"
+cd "/Users/Genra/Documents/work/AutoTemp-Project"
 
 # Create a virtual environment named 'venv'
 python3 -m venv venv
